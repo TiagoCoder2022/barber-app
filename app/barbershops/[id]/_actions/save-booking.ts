@@ -3,7 +3,7 @@
 import { db } from "@/app/_lib/prisma";
 
 interface SaveBookingParams {
-  babershopId: string;
+  barbershopId: string;
   serviceId: string;
   userId: string;
   date: Date;
@@ -15,7 +15,7 @@ export const saveBooking = async (params: SaveBookingParams) => {
       serviceId: params.serviceId,
       userId: params.userId,
       date: params.date,
-      babershopId: params.babershopId,
+      barbershopId: params.barbershopId,
     },
   });
 };
