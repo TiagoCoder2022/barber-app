@@ -17,15 +17,16 @@ interface BookingItemProps {
 
 const BookingItem = ({ booking }: BookingItemProps) => {
   const isBookingConfirmed = isFuture(booking.date);
+
   return (
-    <Card>
+    <Card className="min-w-full">
       <CardContent className="px-0 flex py-0">
         <div className="flex flex-col gap-2 py-5 flex-[3] pl-5">
           <Badge
             className="w-fit"
-            variant={isBookingConfirmed ? "secondary" : "default"}
+            variant={isBookingConfirmed ? "default" : "secondary"}
           >
-            {isBookingConfirmed ? "Finalizado" : "Confirmado"}
+            {isBookingConfirmed ? "Confirmado" : "Finalizado"}
           </Badge>
           <h2 className="font-bold">{booking.service.name}</h2>
           <div className="flex items-center gap-2">
