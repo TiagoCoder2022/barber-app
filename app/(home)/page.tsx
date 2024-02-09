@@ -19,7 +19,7 @@ export default async function Home() {
           where: {
             userId: (session.user as any).id,
             date: {
-              lt: new Date(),
+              gte: new Date(),
             },
           },
           include: {
@@ -47,19 +47,23 @@ export default async function Home() {
       </div>
 
       <div className="mt-6">
-        <h2 className="pl-5 text-xs uppercase text-gray-400 font-bold mb-3">
-          Agendamentos
-        </h2>
-        <div className="px-5 flex overflow-x-auto gap-3 [&::-webkit-scrollbar]:hidden">
-          {confirmedBooking.map((booking: any) => (
-            <BookingItem key={booking.id} booking={booking} />
-          ))}
-        </div>
+        {confirmedBooking.length > 0 && (
+          <>
+            <h2 className="pl-5 text-xs uppercase text-gray-400 font-bold mb-3">
+              Agendamentos
+            </h2>
+            <div className="px-5 flex overflow-x-auto gap-3 [&::-webkit-scrollbar]:hidden">
+              {confirmedBooking.map((booking: any) => (
+                <BookingItem key={booking.id} booking={booking} />
+              ))}
+            </div>
+          </>
+        )}
       </div>
 
       <div className="mt-6 px-5">
         <h2 className="text-xs uppercase text-gray-400 font-bold mb-3">
-          Agendamentos
+          Recomendados
         </h2>
 
         <div className="flex gap-4 overflow-x-auto [&::-webkit-scrollbar]:hidden">
