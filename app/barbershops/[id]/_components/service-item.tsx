@@ -263,6 +263,7 @@ const ServiceItem = ({
                     <Button
                       onClick={handleBookingSubmit}
                       disabled={!hour || !date}
+                      className="w-full"
                     >
                       {submitIsLoading && (
                         <Loader2 className="mr-2 h-4 animate-spin" />
