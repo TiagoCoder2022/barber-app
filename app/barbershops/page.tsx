@@ -33,7 +33,7 @@ const BarbershopsPage = async ({ searchParams }: BarbershopsPageProps) => {
           Resultados para &quot;{searchParams.search}&quot;
         </h1>
 
-        <div className="grid grid-col-2 gap-4">
+        <div className="grid grid-cols-2 gap-4">
           {barbershops.map((barbershop: any) => (
             <div className="w-full" key={barbershop.id}>
               <BarbershopItem barbershop={barbershop} />
