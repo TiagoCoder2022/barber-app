@@ -12,23 +12,29 @@ import { authOptions } from "../_lib/auth";
 export default async function Home() {
   const session = await getServerSession(authOptions);
 
-  const [barbershops, confirmedBooking] = await Promise.all([
-    db.barbershop.findMany({}),
-    session?.user
-      ? db.booking.findMany({
-          where: {
-            userId: (session.user as any).id,
-            date: {
-              gte: new Date(),
+  const [barbershops, recommendedBarbershops, confirmedBooking] =
+    await Promise.all([
+      db.barbershop.findMany({}),
+      db.barbershop.findMany({
+        orderBy: {
+          id: "asc",
+        },
+      }),
+      session?.user
+        ? db.booking.findMany({
+            where: {
+              userId: (session.user as any).id,
+              date: {
+                gte: new Date(),
+              },
             },
-          },
-          include: {
-            service: true,
-            barbershop: true,
-          },
-        })
-      : Promise.resolve([]),
-  ]);
+            include: {
+              service: true,
+              barbershop: true,
+            },
+          })
+        : Promise.resolve([]),
+    ]);
 
   return (
     <div>
@@ -85,7 +91,7 @@ export default async function Home() {
         </h2>
 
         <div className="flex gap-4 overflow-x-auto [&::-webkit-scrollbar]:hidden mb-[4.5rem]">
-          {barbershops.map((barbershop: any) => (
+          {recommendedBarbershops.map((barbershop: any) => (
             <div key={barbershop.id} className="min-w-[167px] mx-w-[167px]">
               <BarbershopItem barbershop={barbershop} />
             </div>
