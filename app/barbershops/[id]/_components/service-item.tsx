@@ -160,6 +160,7 @@ const ServiceItem = ({
                   currency: "BRL",
                 }).format(Number(service.price))}
               </p>
+
               <Sheet open={sheetIsOpen} onOpenChange={setSheetIsOpen}>
                 <SheetTrigger asChild>
                   <Button variant="secondary" onClick={handleBookingClick}>
@@ -167,7 +168,7 @@ const ServiceItem = ({
                   </Button>
                 </SheetTrigger>
 
-                <SheetContent className="p-0 scroll-y-auto h-full">
+                <SheetContent className="p-0 overflow-y-auto h-screen [&::-webkit-scrollbar]:hidden">
                   <SheetHeader className="text-left px-5 py-6 border-b border-solid border-secondary">
                     <SheetTitle>Fazer Reserva</SheetTitle>
                   </SheetHeader>
@@ -203,6 +204,7 @@ const ServiceItem = ({
                       },
                     }}
                   />
+
                   {/*Mostar lista de horário apenas se alguma data estiver selecionada */}
                   {date && (
                     <div className=" flex gap-3 overflow-x-auto py-6 px-5 border-t border-solid border-secondary [&::-webkit-scrollbar]:hidden">
@@ -235,7 +237,7 @@ const ServiceItem = ({
                     />
                   </div>
 
-                  <SheetFooter className="px-5">
+                  <SheetFooter className="px-5 mb-6">
                     <Button
                       onClick={handleBookingSubmit}
                       disabled={!hour || !date}
