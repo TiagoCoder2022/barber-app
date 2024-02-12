@@ -100,7 +100,7 @@ const BookingItem = ({ booking }: BookingItemProps) => {
 
       <SheetContent className="px-0">
         <SheetHeader className="px-5 text-left pb-6 border-b border-solid border-secondary">
-          <SheetTitle>Informacoes da Reserva</SheetTitle>
+          <SheetTitle>Informações da Reserva</SheetTitle>
         </SheetHeader>
 
         <div className="px-5">
